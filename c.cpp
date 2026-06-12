@@ -1,30 +1,62 @@
 #include <iostream>
+#include <vector>
 #include <string>
 
-struct RegistroLago {
-    std::string nombre;
-    double profundidadMax;
-    double temperaturaAgua;
+using namespace std;
+
+struct Estudiante
+{
+    string nombre;
+    float nota;
 };
 
-int main() {
-    RegistroLago miLago;
+int main()
+{
+    vector<Estudiante> listaAlumnos;
+    int cantidad;
 
-    // Entrada de datos directa
-    std::cout << "Introduce el nombre del lago: ";
-    std::getline(std::cin, miLago.nombre);
+    cout << "--- SISTEMA DE REGISTRO DE NOTAS ---" << endl;
+    cout << "¿Cuantos alumnos desea registrar? ";
+    cin >> cantidad;
 
-    std::cout << "Introduce la profundidad maxima (metros): ";
-    std::cin >> miLago.profundidadMax;
+    for (int i = 0; i < cantidad; i++)
+    {
+        Estudiante temp;
 
-    std::cout << "Introduce la temperatura del agua (C): ";
-    std::cin >> miLago.temperaturaAgua;
+        cout << "\nEstudiante #" << i + 1 << endl;
 
-    // Salida de datos directa
-    std::cout << "\nDatos del lago guardados:\n";
-    std::cout << "Nombre: " << miLago.nombre << "\n";
-    std::cout << "Profundidad: " << miLago.profundidadMax << " m\n";
-    std::cout << "Temperatura: " << miLago.temperaturaAgua << " C\n";
+        cout << "Nombre: ";
+        cin >> temp.nombre;
+
+        cout << "Nota: ";
+        cin >> temp.nota;
+
+        listaAlumnos.push_back(temp);
+    }
+
+    cout << "\n--- REPORTE FINAL ---" << endl;
+
+    float suma = 0;
+
+    for (int i = 0; i < listaAlumnos.size(); i++)
+    {
+
+        cout << "Alumno: " << listaAlumnos[i].nombre
+             << " Nota: " << listaAlumnos[i].nota;
+
+        if (listaAlumnos[i].nota >= 11)
+            cout << " [APROBADO]";
+        else
+            cout << " [DESAPROBADO]";
+
+        cout << endl;
+
+        suma += listaAlumnos[i].nota;
+    }
+
+    float promedio = suma / listaAlumnos.size();
+
+    cout << "\nPromedio general: " << promedio << endl;
 
     return 0;
 }
